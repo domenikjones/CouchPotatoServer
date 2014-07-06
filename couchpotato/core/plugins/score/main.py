@@ -27,8 +27,11 @@ class Score(Plugin):
         score = nameScore(toUnicode(nzb['name']), movie['info']['year'], preferred_words)
 
         for movie_title in movie['info']['titles']:
-            score += nameRatioScore(toUnicode(nzb['name']), toUnicode(movie_title))
-            score += namePositionScore(toUnicode(nzb['name']), toUnicode(movie_title))
+            try:
+                score += nameRatioScore(toUnicode(nzb['name']), toUnicode(movie_title))
+                score += namePositionScore(toUnicode(nzb['name']), toUnicode(movie_title))
+            except:
+                score = 100
 
         score += sizeScore(nzb['size'])
 
@@ -64,5 +67,6 @@ class Score(Plugin):
 
         # Scene / Nuke scoring
         score += sceneScore(nzb['name'])
+
 
         return score
