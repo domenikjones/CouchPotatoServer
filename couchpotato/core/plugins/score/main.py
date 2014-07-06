@@ -31,7 +31,7 @@ class Score(Plugin):
                 score += nameRatioScore(toUnicode(nzb['name']), toUnicode(movie_title))
                 score += namePositionScore(toUnicode(nzb['name']), toUnicode(movie_title))
             except:
-                score = 100
+                score = 0
 
         score += sizeScore(nzb['size'])
 
